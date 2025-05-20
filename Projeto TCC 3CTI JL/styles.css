@@ -1,0 +1,244 @@
+/* Estilos gerais */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+  padding-top: 220px;
+}
+
+.cabecalho {
+  background-color: #333; /* Cinza escuro */
+  color: white;
+  padding: 15px 30px;
+  position: fixed; /* Mantém fixo no topo ao rolar */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column; /* Empilha os itens do cabeçalho */
+  align-items: center; /* Centraliza os itens */
+}
+
+
+.cabecalho h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Estilos para as caixas de texto */
+.caixas-de-texto {
+  display: flex;
+  gap: 10px;
+}
+
+.caixas-de-texto input {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 180px;
+  transition: border 0.3s ease;
+}
+
+.caixas-de-texto input:focus {
+  border: 2px solid #4CAF50;
+  outline: none;
+}
+
+.botao-entrar, .selecionar-idioma {
+  display: flex;
+  align-items: center;
+}
+
+/* Estilos para o botão "Entrar/Inscrever-se" */
+.botao-entrar {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.botao-entrar:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+
+
+.botao-idioma {
+  background-color: #f1f1f1;
+  color: #333;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.botao-idioma:hover {
+  background-color: #ddd;
+  transform: scale(1.05);
+}
+
+.caixa-selecao {
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  transition: border 0.3s ease;
+  cursor: pointer;
+}
+
+.caixa-selecao:focus {
+  border: 2px solid #4CAF50;
+  outline: none;
+}
+
+
+/* Estilos para as seções */
+main {
+  padding: 30px;
+  background-color: white;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+section h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+section p {
+  line-height: 1.6;
+}
+
+/* Estilos para as informações de contato */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.service {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.service:hover {
+  background-color: #f1f1f1;
+  transform: scale(1.02);
+}
+
+.service strong {
+  color: #4CAF50;
+  font-weight: 700;
+}
+
+/* Estilos para o rodapé */
+footer {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 14px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilos para a linha de botões */
+/* Estilos para os botões de serviços */
+.menu-servicos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: #222;
+  padding: 10px 0;
+}
+
+.servico-btn {
+  background: linear-gradient(135deg, #4CAF50, #2E7D32);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  margin: 5px;
+}
+
+/* Mantém "Mais..." na mesma linha das outras opções */
+.servico-btn:last-child {
+  margin-left: 10px;
+}
+
+.servico-btn:hover {
+  background: linear-gradient(135deg, #45a049, #1B5E20);
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.topo-cabecalho {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  flex-wrap: wrap; /* Permite quebra de linha se necessário */
+  margin-bottom: 10px;
+}
+
+.janela-imagem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 800px;
+  position: relative;
+}
+
+.janela-imagem img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.seta-esquerda, .seta-direita {
+  position: absolute;
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.seta-esquerda { left: 10px; }
+.seta-direita { right: 10px; }

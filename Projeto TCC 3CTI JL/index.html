@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabeçalho Fixo com Botão e Seleção de Idioma</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="cabecalho">
+    <h1>Meu Cabeçalho Fixo</h1>
+    
+    <div class="caixas-de-texto">
+      <input type="text" placeholder="Pesquise serviços ou empresas" id="pesquisa">
+      <input type="text" placeholder="Onde?" id="onde">
+      <input type="text" placeholder="Quando?" id="quando">
+    
+      <button class="botao-entrar">Entrar</button>
+    
+      <select id="idioma" class="caixa-selecao">
+        <option value="pt">Brasil</option>
+        <option value="en">Inglês</option>
+        <option value="es">Espanhol</option>
+        <option value="fr">Francês</option>
+        <option value="de">Alemão</option>
+        <option value="it">Italiano</option>
+        <option value="jp">Japonês</option>
+        <option value="cn">Chinês</option>
+      </select>
+    </div>
+
+    <nav class="menu-servicos">
+      <button class="servico-btn">Salões de Beleza</button>
+      <button class="servico-btn">Barbearias</button>
+      <button class="servico-btn">Manicure e Nail Designer</button>
+      <button class="servico-btn">Esteticistas</button>
+      <button class="servico-btn">Sobrancelhas e Cílios</button>
+      <button class="servico-btn">Spa e Massagem</button>
+      <button class="servico-btn">Make up</button>
+      <button class="servico-btn">Saúde e Bem-estar</button>
+      <button class="servico-btn">Mais...</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="janela-imagem">
+      <button class="seta-esquerda" onclick="trocarImagem(-1)">⬅</button>
+      <img id="imagem-principal" src="imagem1.jpg" alt="Imagem Principal">
+      <button class="seta-direita" onclick="trocarImagem(1)">➡</button>
+    </div>
+
+    <section id="home">
+      <h2>Seção Início</h2>
+      <p>Conteúdo da seção...</p>
+    </section>
+    <section id="sobre">
+      <h2>Seção Sobre</h2>
+      <p>Conteúdo da seção...</p>
+    </section>
+    <section id="contato">
+      <h2>Seção Contato</h2>
+      <p>Conteúdo da seção...</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
