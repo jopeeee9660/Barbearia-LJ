@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cabeçalho Fixo com Botão e Seleção de Idioma</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <button class="btn-menu" onclick="toggleSidebar()">☰</button>
+
+  <div class="sidebar" id="sidebar">
+    <h2>Menu</h2>
+    <a href="#">Início</a>
+    <a href="#">Sobre</a>
+    <a href="#">Serviços</a>
+    <a href="#">Contato</a>
+  </div>
+
+  <header class="cabecalho">
+    <div class="conteudo-cabecalho">
+      <div class="caixas-de-texto">
+        <input type="text" id="pesquisa" placeholder="Pesquise serviços ou empresas">
+        <input type="text" id="onde" placeholder="Onde?">
+        <input type="text" id="quando" placeholder="Quando?">
+
+        <button class="botao-entrar" id="botao-entrar">Entrar</button>
+
+        <select id="idioma" class="caixa-selecao" onchange="trocarIdioma(this.value)">
+          <option value="pt">Português</option>
+          <option value="en">Inglês</option>
+          <option value="es">Espanhol</option>
+        </select>
+      </div>
+      <img src="imagens/logo.png" alt="Logo do site" class="logo-direita">
+    </div>
+  </header>
+
+  <main>
+    <div class="janela-imagem">
+      <button class="seta-esquerda" onclick="trocarImagem(-1)">⬅</button>
+      <img id="imagem-principal" src="imagens/imagem1.jpg" alt="Imagem Principal">
+      <button class="seta-direita" onclick="trocarImagem(1)">➡</button>
+    </div>
+
+    <section id="home">
+      <h2 id="inicio">Início</h2>
+      <p id="inicio-texto">Bem-vindo ao nosso site! Explore nossos serviços e descubra o que podemos fazer por você.</p>
+    </section>
+
+    <section id="sobre">
+      <h2 id="sobre">Sobre</h2>
+      <p id="sobre-texto">Somos uma empresa focada em qualidade e inovação.</p>
+    </section>
+
+    <section id="contato">
+      <h2 id="contato">Contato</h2>
+      <p id="contato-texto">Fale conosco para saber mais!</p>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Seu Site. Todos os direitos reservados.
+  </footer>
+
+  <script>
+    if (!localStorage.getItem("logado")) {
+      window.location.href = "login/login.html";
+    }
+  </script>
+
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>
