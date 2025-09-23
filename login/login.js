@@ -2,15 +2,20 @@ function fazerLogin() {
   const usuario = document.getElementById("usuario").value;
   const senha = document.getElementById("senha").value;
 
-  const usuarioSalvo = localStorage.getItem("usuario");
-  const senhaSalva = localStorage.getItem("senha");
+  if (!usuario || !senha) {
+    alert("Por favor, preencha todos os campos.");
+    return;
+  }
 
-  if (usuario === usuarioSalvo && senha === senhaSalva) {
-    localStorage.setItem("logado", "true");
-    alert("Login bem-sucedido!");
-    window.location.href = "../index.html";
-  } else {
-    alert("Usuário ou senha incorretos.");
+  try {
+    if (auth.login(usuario, senha)) {
+      alert("Login bem-sucedido!");
+      window.location.href = "../index.html";
+    } else {
+      alert("Usuário ou senha incorretos.");
+    }
+  } catch (error) {
+    alert(error.message);
   }
 }
 

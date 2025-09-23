@@ -1,0 +1,176 @@
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: relative;
+    background-color: var(--white);
+    margin: 5vh auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.close-modal:hover {
+    color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+.modal h2 {
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.1);
+    outline: none;
+}
+
+.pagamento-info {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: var(--background-color);
+    border-radius: 5px;
+}
+
+.card-details {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.card-details input {
+    flex: 1;
+}
+
+#cvv {
+    max-width: 100px;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--accent-color);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Language Selector Styles */
+.idioma-selector {
+    position: relative;
+    margin-left: 20px;
+}
+
+.idioma-selector select {
+    padding: 8px 30px 8px 15px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 5px;
+    background-color: transparent;
+    color: var(--white);
+    font-size: 14px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+}
+
+.idioma-selector select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.idioma-selector select option {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* Responsive Styles */
+@media (max-width: 480px) {
+    .modal-content {
+        margin: 0;
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        padding: 20px;
+    }
+
+    .card-details {
+        flex-direction: column;
+    }
+
+    #cvv {
+        max-width: 100%;
+    }
+}

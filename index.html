@@ -1,78 +1,151 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cabeçalho Fixo com Botão e Seleção de Idioma</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia LJ - O melhor estilo para você</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="imagens/logo.png" type="image/png">
 </head>
 <body>
+    <button class="btn-menu" onclick="toggleSidebar()">☰</button>
 
-  <button class="btn-menu" onclick="toggleSidebar()">☰</button>
-
-  <div class="sidebar" id="sidebar">
-    <h2>Menu</h2>
-    <a href="#">Início</a>
-    <a href="#">Sobre</a>
-    <a href="#">Serviços</a>
-    <a href="#">Contato</a>
-  </div>
-
-  <header class="cabecalho">
-    <div class="conteudo-cabecalho">
-      <div class="caixas-de-texto">
-        <input type="text" id="pesquisa" placeholder="Pesquise serviços ou empresas">
-        <input type="text" id="onde" placeholder="Onde?">
-        <input type="text" id="quando" placeholder="Quando?">
-
-        <button class="botao-entrar" id="botao-entrar">Entrar</button>
-
-        <select id="idioma" class="caixa-selecao" onchange="trocarIdioma(this.value)">
-          <option value="pt">Português</option>
-          <option value="en">Inglês</option>
-          <option value="es">Espanhol</option>
-        </select>
-      </div>
-      <img src="imagens/logo.png" alt="Logo do site" class="logo-direita">
-    </div>
-  </header>
-
-  <main>
-    <div class="janela-imagem">
-      <button class="seta-esquerda" onclick="trocarImagem(-1)">⬅</button>
-      <img id="imagem-principal" src="imagens/imagem1.jpg" alt="Imagem Principal">
-      <button class="seta-direita" onclick="trocarImagem(1)">➡</button>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="imagens/logo.png" alt="Logo Barbearia LJ" class="sidebar-logo">
+            <h2>Menu</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#home" onclick="scrollToSection('home')">Início</a>
+            <a href="#servicos" onclick="scrollToSection('servicos')">Serviços</a>
+            <a href="#sobre" onclick="scrollToSection('sobre')">Sobre</a>
+            <a href="#contato" onclick="scrollToSection('contato')">Contato</a>
+            <a href="#" onclick="auth.logout()">Sair</a>
+        </nav>
     </div>
 
-    <section id="home">
-      <h2 id="inicio">Início</h2>
-      <p id="inicio-texto">Bem-vindo ao nosso site! Explore nossos serviços e descubra o que podemos fazer por você.</p>
-    </section>
+    <header class="cabecalho">
+        <div class="conteudo-cabecalho">
+            <div class="caixas-de-texto">
+                <input type="text" id="pesquisa" placeholder="Pesquise serviços">
+                <input type="text" id="onde" placeholder="Onde?">
+                <select id="idioma" class="caixa-selecao" onchange="trocarIdioma(this.value)">
+                    <option value="pt">Português</option>
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                </select>
+            </div>
+            <img src="imagens/logo.png" alt="Logo Barbearia LJ" class="logo-direita">
+        </div>
+    </header>
 
-    <section id="sobre">
-      <h2 id="sobre">Sobre</h2>
-      <p id="sobre-texto">Somos uma empresa focada em qualidade e inovação.</p>
-    </section>
+    <main>
+        <div class="janela-imagem">
+            <button class="seta-esquerda" onclick="trocarImagem(-1)">⬅</button>
+            <img id="imagem-principal" src="imagens/imagem1.jpg" alt="Imagem Principal">
+            <button class="seta-direita" onclick="trocarImagem(1)">➡</button>
+        </div>
 
-    <section id="contato">
-      <h2 id="contato">Contato</h2>
-      <p id="contato-texto">Fale conosco para saber mais!</p>
-    </section>
-  </main>
+        <section id="home">
+            <h2 id="inicio">Bem-vindo à Barbearia LJ</h2>
+            <p id="inicio-texto">Aqui você encontra os melhores profissionais para cuidar do seu visual!</p>
+        </section>
 
-  <footer>
-    © 2025 Seu Site. Todos os direitos reservados.
-  </footer>
+        <section id="servicos">
+            <h2>Nossos Serviços</h2>
+            <div class="servicos-grid">
+                <div class="servico-card">
+                    <h3>Corte de Cabelo</h3>
+                    <p>Cortes modernos e tradicionais</p>
+                    <span class="preco">R$ 35,00</span>
+                    <button onclick="agendarServico('Corte de Cabelo')">Agendar</button>
+                </div>
+                <div class="servico-card">
+                    <h3>Barba</h3>
+                    <p>Aparar e modelar sua barba</p>
+                    <span class="preco">R$ 25,00</span>
+                    <button onclick="agendarServico('Barba')">Agendar</button>
+                </div>
+                <div class="servico-card">
+                    <h3>Pacote Completo</h3>
+                    <p>Corte + Barba</p>
+                    <span class="preco">R$ 55,00</span>
+                    <button onclick="agendarServico('Pacote Completo')">Agendar</button>
+                </div>
+            </div>
+        </section>
 
-  <script>
-    if (!localStorage.getItem("logado")) {
-      window.location.href = "login/login.html";
-    }
-  </script>
+        <section id="sobre">
+            <h2>Sobre Nós</h2>
+            <p id="sobre-texto">Com anos de experiência no mercado, a Barbearia LJ se destaca pela qualidade e profissionalismo. Nossa equipe é composta por profissionais altamente qualificados, prontos para oferecer o melhor serviço para você.</p>
+        </section>
 
+        <section id="contato">
+            <h2>Contato</h2>
+            <div class="contato-info">
+                <p><strong>Endereço:</strong> Rua Principal, 123 - Centro</p>
+                <p><strong>Telefone:</strong> (11) 99999-9999</p>
+                <p><strong>Email:</strong> contato@barbearialj.com</p>
+                <p><strong>Horário de Funcionamento:</strong> Seg-Sáb: 9h às 20h</p>
+            </div>
+        </section>
+    </main>
 
+    <!-- Modal de Agendamento -->
+    <div id="modal-agendamento" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-titulo">Agendar Serviço</h2>
+            <form id="form-agendamento">
+                <div class="form-group">
+                    <label for="servico-selecionado" id="label-servico">Serviço:</label>
+                    <input type="text" id="servico-selecionado" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="data-hora" id="label-data">Data e Hora:</label>
+                    <input type="datetime-local" id="data-hora" required>
+                </div>
+                <div class="form-group">
+                    <label for="metodo-pagamento" id="label-pagamento">Método de Pagamento:</label>
+                    <select id="metodo-pagamento" required>
+                        <option value="" id="select-pagamento">Selecione o método de pagamento</option>
+                        <option value="pix" id="opcao-pix">PIX</option>
+                        <option value="cartao" id="opcao-cartao">Cartão de Crédito/Débito</option>
+                    </select>
+                </div>
+                <div id="pix-info" class="pagamento-info" style="display: none;">
+                    <p id="pix-instrucoes">Após confirmar, você receberá o QR Code do PIX</p>
+                </div>
+                <div id="cartao-info" class="pagamento-info" style="display: none;">
+                    <input type="text" id="numero-cartao" placeholder="Número do Cartão" pattern="[0-9]{16}" maxlength="16">
+                    <div class="card-details">
+                        <input type="text" id="validade" placeholder="MM/AA" pattern="[0-9]{2}/[0-9]{2}" maxlength="5">
+                        <input type="text" id="cvv" placeholder="CVV" pattern="[0-9]{3,4}" maxlength="4">
+                    </div>
+                    <input type="text" id="nome-cartao" placeholder="Nome no Cartão">
+                </div>
+                <button type="submit" id="btn-confirmar" class="btn-primary">Confirmar Agendamento</button>
+            </form>
+        </div>
+    </div>
 
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="imagens/logo.png" alt="Logo Barbearia LJ">
+            </div>
+            <div class="footer-info">
+                <p>© 2025 Barbearia LJ - Todos os direitos reservados</p>
+                <div class="social-links">
+                    <a href="#" target="_blank">Instagram</a>
+                    <a href="#" target="_blank">Facebook</a>
+                    <a href="#" target="_blank">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-  <script src="script.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
