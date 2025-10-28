@@ -1,0 +1,84 @@
+/* ========================================
+   Barbearia LJ - Styles (Modular CSS)
+   ======================================== */
+
+/* Importar variáveis e global */
+@import './styles/variables.css';
+@import './styles/global.css';
+@import './styles/animations.css';
+
+/* Importar componentes */
+@import './styles/components/Header.css';
+@import './styles/components/Sidebar.css';
+@import './styles/components/Carousel.css';
+@import './styles/components/Services.css';
+@import './styles/components/Modal.css';
+@import './styles/components/Login.css';
+@import './styles/components/Footer.css';
+
+/* Seções específicas */
+#home,
+#sobre,
+#contato {
+  padding: var(--spacing-xxxl) var(--spacing-lg);
+  position: relative;
+}
+
+#home h2,
+#sobre h2,
+#contato h2 {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  font-weight: var(--font-weight-bold);
+  position: relative;
+  padding-bottom: var(--spacing-lg);
+}
+
+#home h2::after,
+#sobre h2::after,
+#contato h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: var(--gradient-accent);
+  border-radius: var(--radius-sm);
+}
+
+.contato-info {
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 2;
+  background: var(--white);
+  padding: var(--spacing-xxl);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.contato-info p {
+  margin-bottom: var(--spacing-lg);
+  font-size: var(--font-size-md);
+  color: var(--text-color);
+}
+
+.contato-info strong {
+  color: var(--accent-color);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* App root */
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}

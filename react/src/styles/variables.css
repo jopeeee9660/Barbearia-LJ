@@ -1,0 +1,117 @@
+/* ========================================
+   Variáveis CSS - Design System
+   ======================================== */
+
+:root {
+  /* Cores principais - Tema Barbearia Premium */
+  --primary-color: #1a1a1a;
+  --secondary-color: #2d2d2d;
+  --accent-color: #d4af37; /* Dourado elegante */
+  --accent-hover: #f0c54a;
+  --accent-dark: #b8941f;
+  
+  /* Cores de texto */
+  --text-color: #2c2c2c;
+  --text-light: #6c6c6c;
+  --text-white: #ffffff;
+  --text-muted: #999;
+  
+  /* Cores de fundo */
+  --background-color: #f8f9fa;
+  --background-dark: #0f0f0f;
+  --white: #ffffff;
+  --overlay: rgba(0, 0, 0, 0.7);
+  --overlay-light: rgba(0, 0, 0, 0.3);
+  
+  /* Gradientes */
+  --gradient-primary: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  --gradient-accent: linear-gradient(135deg, #d4af37 0%, #f0c54a 100%);
+  --gradient-overlay: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 100%);
+  
+  /* Cores de status */
+  --success: #28a745;
+  --success-light: #d4edda;
+  --error: #dc3545;
+  --error-light: #f8d7da;
+  --warning: #ffc107;
+  --warning-light: #fff3cd;
+  --info: #17a2b8;
+  --info-light: #d1ecf1;
+  
+  /* Espaçamentos */
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 15px;
+  --spacing-lg: 20px;
+  --spacing-xl: 30px;
+  --spacing-xxl: 40px;
+  --spacing-xxxl: 60px;
+  
+  /* Bordas */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-circle: 50%;
+  --border-width: 2px;
+  
+  /* Sombras - Mais sofisticadas */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.16);
+  --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.2);
+  --shadow-accent: 0 4px 20px rgba(212, 175, 55, 0.3);
+  --shadow-inset: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  /* Efeito Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-blur: blur(10px);
+  
+  /* Transições */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Tamanhos */
+  --header-height: 85px;
+  --sidebar-width: 300px;
+  --container-max: 1200px;
+  --container-wide: 1400px;
+  
+  /* Fontes */
+  --font-family: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
+  --font-family-heading: "Poppins", "Segoe UI", sans-serif;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-xxl: 32px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Z-index */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 500;
+  --z-header: 1000;
+  --z-overlay: 1500;
+  --z-sidebar: 2000;
+  --z-modal: 2500;
+  --z-toast: 3000;
+}
+
+/* Tema escuro (opcional - preparado para futuro) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #2a2a2a;
+    --text-color: #e0e0e0;
+    --background-color: #121212;
+    --white: #1e1e1e;
+  }
+}

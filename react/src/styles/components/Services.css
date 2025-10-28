@@ -1,0 +1,205 @@
+/* ========================================
+   Services Component - Premium Design
+   ======================================== */
+
+#servicos {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  padding: var(--spacing-xxxl) var(--spacing-lg);
+  position: relative;
+}
+
+#servicos::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-accent);
+}
+
+#servicos h2 {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  position: relative;
+  padding-bottom: var(--spacing-lg);
+}
+
+#servicos h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: var(--gradient-accent);
+  border-radius: var(--radius-sm);
+}
+
+.servicos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-xl);
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.servico {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  border: 2px solid transparent;
+  position: relative;
+}
+
+.servico::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--radius-xl);
+  padding: 2px;
+  background: var(--gradient-accent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.servico:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--accent-color);
+}
+
+.servico:hover::before {
+  opacity: 1;
+}
+
+.servico img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform var(--transition-slow);
+  position: relative;
+}
+
+.servico:hover img {
+  transform: scale(1.1);
+}
+
+.servico-info {
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  flex: 1;
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+}
+
+.servico-info h3 {
+  color: var(--primary-color);
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-sm);
+  font-weight: var(--font-weight-bold);
+}
+
+.servico-info p {
+  color: var(--text-light);
+  flex: 1;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.6;
+}
+
+.preco {
+  color: var(--accent-color);
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-bold);
+  margin: var(--spacing-sm) 0;
+  text-shadow: 0 2px 4px rgba(212, 175, 55, 0.2);
+}
+
+.btn-agendar {
+  background: var(--gradient-accent);
+  color: var(--primary-color);
+  border: none;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  transition: all var(--transition-normal);
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-agendar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: left 0.5s;
+}
+
+.btn-agendar:hover::before {
+  left: 100%;
+}
+
+.btn-agendar:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-accent);
+}
+
+.btn-agendar:active {
+  transform: translateY(-1px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .servicos {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    padding: 0 var(--spacing-md);
+  }
+  
+  .servico img {
+    height: 200px;
+  }
+  
+  .servico-info {
+    padding: var(--spacing-md);
+  }
+  
+  .btn-agendar {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .servicos {
+    grid-template-columns: 1fr;
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .servico img {
+    height: 180px;
+  }
+}

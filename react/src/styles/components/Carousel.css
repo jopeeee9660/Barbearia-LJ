@@ -1,0 +1,88 @@
+/* ========================================
+   Carousel Component
+   ======================================== */
+
+.janela-imagem {
+  position: relative;
+  width: 100%;
+  max-width: var(--container-max);
+  margin: var(--spacing-lg) auto var(--spacing-xxl);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.janela-imagem img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: opacity var(--transition-normal);
+}
+
+.seta-esquerda,
+.seta-direita {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--text-white);
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: 24px;
+  transition: all var(--transition-normal);
+  border-radius: var(--radius-sm);
+  z-index: 10;
+  backdrop-filter: blur(5px);
+}
+
+.seta-esquerda {
+  left: var(--spacing-md);
+}
+
+.seta-direita {
+  right: var(--spacing-md);
+}
+
+.seta-esquerda:hover,
+.seta-direita:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.seta-esquerda:active,
+.seta-direita:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .janela-imagem {
+    margin: var(--spacing-sm);
+    border-radius: var(--radius-md);
+  }
+  
+  .janela-imagem img {
+    height: 400px;
+  }
+  
+  .seta-esquerda,
+  .seta-direita {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .janela-imagem img {
+    height: 250px;
+  }
+  
+  .seta-esquerda,
+  .seta-direita {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 18px;
+  }
+}
