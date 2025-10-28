@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barbearia LJ - O melhor estilo para você</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/agendamento.css">
+    <link rel="stylesheet" href="css/servicos.css">
     <link rel="stylesheet" href="modal.css">
     <link rel="icon" href="imagens/logo.png" type="image/png">
 </head>
@@ -36,7 +39,27 @@
                     <option value="es">Español</option>
                 </select>
             </div>
-            <img src="imagens/logo.png" alt="Logo Barbearia LJ" class="logo-direita">
+            <div class="header-right">
+                <div id="user-area" class="user-area" style="display: none;">
+                    <div class="profile-circle" id="profile-circle">
+                        <span id="user-initials"></span>
+                    </div>
+                    <div class="user-dropdown" id="user-dropdown">
+                        <div class="user-info">
+                            <span id="usuario-nome"></span>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <button onclick="auth.logout()" class="btn-logout">
+                            <span class="logout-icon">↪</span>
+                            Sair
+                        </button>
+                    </div>
+                </div>
+                <div id="login-area" class="login-area">
+                    <button onclick="window.location.href='login/login.html'" class="btn-login">Entrar</button>
+                </div>
+                <img src="imagens/logo.png" alt="Logo Barbearia LJ" class="logo-direita">
+            </div>
         </div>
     </header>
 
@@ -54,24 +77,33 @@
 
         <section id="servicos">
             <h2>Nossos Serviços</h2>
-            <div class="servicos-grid">
-                <div class="servico-card">
-                    <h3>Corte de Cabelo</h3>
-                    <p>Cortes modernos e tradicionais</p>
-                    <span class="preco">R$ 35,00</span>
-                    <button onclick="agendarServico('Corte de Cabelo')">Agendar</button>
+            <div class="servicos">
+                <div class="servico">
+                    <img src="imagens/corte.jpg" alt="Corte de Cabelo">
+                    <div class="servico-info">
+                        <h3>Corte de Cabelo</h3>
+                        <p>Cortes modernos e tradicionais</p>
+                        <span class="preco">R$ 35,00</span>
+                        <button class="btn-agendar">Agendar</button>
+                    </div>
                 </div>
-                <div class="servico-card">
-                    <h3>Barba</h3>
-                    <p>Aparar e modelar sua barba</p>
-                    <span class="preco">R$ 25,00</span>
-                    <button onclick="agendarServico('Barba')">Agendar</button>
+                <div class="servico">
+                    <img src="imagens/barba.jpg" alt="Barba">
+                    <div class="servico-info">
+                        <h3>Barba</h3>
+                        <p>Aparar e modelar sua barba</p>
+                        <span class="preco">R$ 25,00</span>
+                        <button class="btn-agendar" onclick="agendarServico('Barba')">Agendar</button>
+                    </div>
                 </div>
-                <div class="servico-card">
-                    <h3>Pacote Completo</h3>
-                    <p>Corte + Barba</p>
-                    <span class="preco">R$ 55,00</span>
-                    <button onclick="agendarServico('Pacote Completo')">Agendar</button>
+                <div class="servico">
+                    <img src="imagens/combo.jpg" alt="Pacote Completo">
+                    <div class="servico-info">
+                        <h3>Pacote Completo</h3>
+                        <p>Corte + Barba</p>
+                        <span class="preco">R$ 55,00</span>
+                        <button class="btn-agendar" onclick="agendarServico('Pacote Completo')">Agendar</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -147,6 +179,9 @@
     </footer>
 
     <script src="js/auth.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="js/interface.js"></script>
+    <script src="js/agendamento.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

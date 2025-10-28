@@ -1,0 +1,151 @@
+/* Serviços */
+.servicos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 40px auto;
+    padding: 0 20px;
+    max-width: 1200px;
+}
+
+.servico {
+    background-color: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+}
+
+.servico:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.servico img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+}
+
+.servico-info {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.servico h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.servico p {
+    color: var(--text-color);
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.preco {
+    color: var(--accent-color);
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.btn-agendar {
+    background-color: var(--accent-color);
+    color: var(--white);
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.btn-agendar:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-agendar:active {
+    transform: translateY(0);
+}
+
+/* Imagem Principal */
+.janela-imagem {
+    position: relative;
+    margin: 20px auto;
+    max-width: 1200px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.janela-imagem img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .servicos {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        padding: 0 15px;
+        gap: 15px;
+    }
+    
+    .servico {
+        aspect-ratio: auto;
+        height: auto;
+        min-height: 350px;
+    }
+    
+    .servico img {
+        height: 180px;
+    }
+    
+    .btn-agendar {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .janela-imagem {
+        margin: 10px;
+    }
+    
+    .janela-imagem img {
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .servicos {
+        grid-template-columns: 1fr;
+        padding: 0 10px;
+    }
+    
+    .servico {
+        min-height: 320px;
+    }
+    
+    .servico img {
+        height: 160px;
+    }
+    
+    .janela-imagem img {
+        height: 200px;
+    }
+}

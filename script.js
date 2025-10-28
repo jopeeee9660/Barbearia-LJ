@@ -4,15 +4,44 @@ if (!window.auth) {
         checkAuth: function() {
             return localStorage.getItem('logado') === 'true';
         },
+        getUser: function() {
+            return localStorage.getItem('usuario');
+        },
         logout: function() {
             localStorage.removeItem('logado');
+            localStorage.removeItem('usuario');
             window.location.href = 'login/login.html';
+        },
+        updateInterface: function() {
+            const userArea = document.getElementById('user-area');
+            const loginArea = document.getElementById('login-area');
+            const usuarioNome = document.getElementById('usuario-nome');
+            const userInitials = document.getElementById('user-initials');
+            
+            if (this.checkAuth()) {
+                const username = this.getUser();
+                userArea.style.display = 'flex';
+                loginArea.style.display = 'none';
+                
+                if (usuarioNome) {
+                    usuarioNome.textContent = username;
+                }
+                
+                if (userInitials) {
+                    // Pega a primeira letra de cada palavra no nome do usuário
+                    const initials = username
+                        .split(' ')
+                        .map(name => name[0])
+                        .join('')
+                        .slice(0, 2);
+                    userInitials.textContent = initials;
+                }
+            } else {
+                userArea.style.display = 'none';
+                loginArea.style.display = 'flex';
+            }
         }
     };
-}
-
-if (!auth.checkAuth()) {
-    window.location.href = "login/login.html";
 }
 
 // Configuração do carrossel de imagens
@@ -26,26 +55,86 @@ let imagens = [
 let indiceAtual = 0;
 let intervaloCarrossel;
 
+// Função para trocar imagens do carrossel
 function trocarImagem(direcao) {
     clearInterval(intervaloCarrossel);
+    indiceAtual = (indiceAtual + direcao + imagens.length) % imagens.length;
+    const img = document.getElementById("imagem-principal");
+    img.style.opacity = "0";
+    
+    setTimeout(() => {
+        img.src = imagens[indiceAtual];
+        img.style.opacity = "1";
+    }, 200);
+    
+    iniciarCarrosselAutomatico();
+}
+
+// Inicia o carrossel automático
+function iniciarCarrosselAutomatico() {
+    if (intervaloCarrossel) {
+        clearInterval(intervaloCarrossel);
+    }
+    intervaloCarrossel = setInterval(() => trocarImagem(1), 5000);
+}
+
+// Atualizar interface baseado no estado de autenticação
+auth.updateInterface();
+
+// Função para trocar imagens do carrossel
+function trocarImagem(direcao) {
+    if (intervaloCarrossel) {
+        clearInterval(intervaloCarrossel);
+    }
+    
     indiceAtual += direcao;
     if (indiceAtual < 0) {
         indiceAtual = imagens.length - 1;
     } else if (indiceAtual >= imagens.length) {
         indiceAtual = 0;
     }
+    
     const imgElement = document.getElementById("imagem-principal");
     if (imgElement) {
-        imgElement.src = imagens[indiceAtual];
+        // Fazer a transição suave
+        imgElement.style.opacity = '0';
+        setTimeout(() => {
+            imgElement.src = imagens[indiceAtual];
+            imgElement.style.opacity = '1';
+        }, 200);
     }
+    
     iniciarCarrosselAutomatico();
 }
 
 function iniciarCarrosselAutomatico() {
+    if (intervaloCarrossel) {
+        clearInterval(intervaloCarrossel);
+    }
     intervaloCarrossel = setInterval(() => {
         trocarImagem(1);
     }, 5000);
 }
+
+// Inicializar funcionalidades quando a página carregar
+document.addEventListener('DOMContentLoaded', function() {
+    // Iniciar o carrossel
+    const imgElement = document.getElementById("imagem-principal");
+    if (imgElement) {
+        imgElement.src = imagens[0];
+        iniciarCarrosselAutomatico();
+    }
+
+    // Configurar eventos do modal
+    const closeModal = document.querySelector('.close-modal');
+    if (closeModal) {
+        closeModal.onclick = fecharModal;
+    }
+
+    // Configurar formulário de agendamento
+    const formAgendamento = document.getElementById('form-agendamento');
+    const metodoPagamento = document.getElementById('metodo-pagamento');
+});
 
 // Controle da sidebar
 function toggleSidebar() {
@@ -145,15 +234,30 @@ function abrirModal(servico) {
     const modal = document.getElementById('modal-agendamento');
     const servicoInput = document.getElementById('servico-selecionado');
     const dataHoraInput = document.getElementById('data-hora');
+    const metodoPagamento = document.getElementById('metodo-pagamento');
+    const pixInfo = document.getElementById('pix-info');
+    const cartaoInfo = document.getElementById('cartao-info');
+    const form = document.getElementById('form-agendamento');
     
     if (modal && servicoInput && dataHoraInput) {
+        // Resetar o formulário
+        if (form) form.reset();
+        
+        // Configurar o serviço selecionado
         servicoInput.value = servico;
         
+        // Configurar data mínima
         const agora = new Date();
         const dataMinima = agora.toISOString().slice(0, 16);
         dataHoraInput.min = dataMinima;
         
-        modal.classList.add('show');
+        // Resetar método de pagamento
+        if (metodoPagamento) metodoPagamento.value = '';
+        if (pixInfo) pixInfo.style.display = 'none';
+        if (cartaoInfo) cartaoInfo.style.display = 'none';
+        
+        // Mostrar o modal
+        modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 }
@@ -165,7 +269,7 @@ function fecharModal() {
     const cartaoInfo = document.getElementById('cartao-info');
     
     if (modal) {
-        modal.classList.remove('show');
+        modal.classList.remove('active');
         document.body.style.overflow = 'auto';
         
         if (form) form.reset();
@@ -175,6 +279,10 @@ function fecharModal() {
 }
 
 function agendarServico(servico) {
+    if (!auth.checkAuth()) {
+        window.location.href = 'login/login.html';
+        return;
+    }
     abrirModal(servico);
 }
 
@@ -189,6 +297,51 @@ document.addEventListener('DOMContentLoaded', function() {
     const metodoPagamento = document.getElementById('metodo-pagamento');
     const formAgendamento = document.getElementById('form-agendamento');
     const numeroCartao = document.getElementById('numero-cartao');
+    const pixInfo = document.getElementById('pix-info');
+    const cartaoInfo = document.getElementById('cartao-info');
+
+    // Fechar modal quando clicar no X
+    if (closeModal) {
+        closeModal.onclick = fecharModal;
+    }
+
+    // Fechar modal quando clicar fora dele
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            fecharModal();
+        }
+    }
+
+    // Alterar método de pagamento
+    if (metodoPagamento) {
+        metodoPagamento.onchange = function() {
+            if (this.value === 'pix') {
+                pixInfo.style.display = 'block';
+                cartaoInfo.style.display = 'none';
+            } else if (this.value === 'cartao') {
+                pixInfo.style.display = 'none';
+                cartaoInfo.style.display = 'block';
+            } else {
+                pixInfo.style.display = 'none';
+                cartaoInfo.style.display = 'none';
+            }
+        }
+    }
+
+    // Configurar envio do formulário
+    if (formAgendamento) {
+        formAgendamento.onsubmit = function(e) {
+            e.preventDefault();
+            const servico = document.getElementById('servico-selecionado').value;
+            const dataHora = document.getElementById('data-hora').value;
+            const metodoPag = metodoPagamento.value;
+
+            // Aqui você pode adicionar a lógica para processar o agendamento
+            console.log('Agendamento:', { servico, dataHora, metodoPag });
+            alert('Agendamento realizado com sucesso!');
+            fecharModal();
+        }
+    }
     const validade = document.getElementById('validade');
 
     // Fechar modal
@@ -239,6 +392,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.target.value = value;
         });
     }
+});
 
     // Formulário de agendamento
     if (formAgendamento) {
