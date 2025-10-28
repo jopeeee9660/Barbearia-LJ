@@ -153,7 +153,7 @@ function abrirModal(servico) {
         const dataMinima = agora.toISOString().slice(0, 16);
         dataHoraInput.min = dataMinima;
         
-        modal.style.display = 'block';
+        modal.classList.add('show');
         document.body.style.overflow = 'hidden';
     }
 }
@@ -165,7 +165,7 @@ function fecharModal() {
     const cartaoInfo = document.getElementById('cartao-info');
     
     if (modal) {
-        modal.style.display = 'none';
+        modal.classList.remove('show');
         document.body.style.overflow = 'auto';
         
         if (form) form.reset();
