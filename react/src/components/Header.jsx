@@ -1,14 +1,20 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../context/AuthContext'
+import { useLanguage } from '../context/LanguageContext'
 
 export default function Header() {
   const navigate = useNavigate()
   const { user, isAuthenticated, logout, getUserInitials } = useAuthContext()
+  const { t, language, changeLanguage } = useLanguage()
 
   const handleLogout = () => {
     logout()
     navigate('/')
+  }
+
+  const handleLanguageChange = (e) => {
+    changeLanguage(e.target.value)
   }
 
   return (
@@ -17,15 +23,20 @@ export default function Header() {
         <div className="caixas-de-texto">
           <input 
             type="text" 
-            placeholder="Pesquise serviços" 
-            aria-label="Pesquisar serviços"
+            placeholder={t('searchServices')}
+            aria-label={t('searchServices')}
           />
           <input 
             type="text" 
-            placeholder="Onde?" 
-            aria-label="Localização"
+            placeholder={t('where')}
+            aria-label={t('where')}
           />
-          <select className="caixa-selecao" aria-label="Selecionar idioma">
+          <select 
+            className="caixa-selecao" 
+            value={language}
+            onChange={handleLanguageChange}
+            aria-label="Selecionar idioma"
+          >
             <option value="pt">Português</option>
             <option value="en">English</option>
             <option value="es">Español</option>
@@ -45,10 +56,10 @@ export default function Header() {
                 <button 
                   className="btn-logout" 
                   onClick={handleLogout}
-                  aria-label="Sair da conta"
+                  aria-label={t('logout')}
                 >
                   <span className="logout-icon">↪</span>
-                  Sair
+                  {t('logout')}
                 </button>
               </div>
             </div>
@@ -57,9 +68,9 @@ export default function Header() {
               <button 
                 className="btn-login" 
                 onClick={() => navigate('/login')}
-                aria-label="Fazer login"
+                aria-label={t('login')}
               >
-                Entrar
+                {t('login')}
               </button>
             </div>
           )}

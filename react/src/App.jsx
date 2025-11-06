@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from './context/AuthContext'
+import { useLanguage } from './context/LanguageContext'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 import Carousel from './components/Carousel'
@@ -11,6 +12,7 @@ import Footer from './components/Footer'
 export default function App() {
   const navigate = useNavigate()
   const { isAuthenticated } = useAuthContext()
+  const { t } = useLanguage()
   const [modalOpen, setModalOpen] = useState(false)
   const [selectedService, setSelectedService] = useState('')
 
@@ -30,21 +32,21 @@ export default function App() {
       <main>
         <Carousel />
         <section id="home" className="container">
-          <h2>Bem-vindo à Barbearia LJ</h2>
-          <p>Aqui você encontra os melhores profissionais para cuidar do seu visual!</p>
+          <h2>{t('welcome')}</h2>
+          <p>{t('welcomeText')}</p>
         </section>
         <Services onSchedule={openModal} />
         <section id="sobre" className="container">
-          <h2>Sobre Nós</h2>
-          <p>Com anos de experiência no mercado, a Barbearia LJ se destaca pela qualidade e profissionalismo. Nossa equipe é composta por profissionais altamente qualificados, prontos para oferecer o melhor serviço para você.</p>
+          <h2>{t('about')}</h2>
+          <p>{t('aboutText')}</p>
         </section>
         <section id="contato" className="container">
-          <h2>Contato</h2>
+          <h2>{t('contact')}</h2>
           <div className="contato-info">
-            <p><strong>Endereço:</strong> Rua Principal, 123 - Centro</p>
-            <p><strong>Telefone:</strong> (11) 99999-9999</p>
-            <p><strong>Email:</strong> contato@barbearialj.com</p>
-            <p><strong>Horário de Funcionamento:</strong> Seg-Sáb: 9h às 20h</p>
+            <p><strong>{t('address')}:</strong> {t('addressText')}</p>
+            <p><strong>{t('phone')}:</strong> {t('phoneText')}</p>
+            <p><strong>{t('email')}:</strong> {t('emailText')}</p>
+            <p><strong>{t('hours')}:</strong> {t('hoursText')}</p>
           </div>
         </section>
       </main>

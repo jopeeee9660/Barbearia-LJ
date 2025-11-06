@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuthContext } from '../context/AuthContext'
+import { useLanguage } from '../context/LanguageContext'
 
 export default function LoginPage() {
   const navigate = useNavigate()
   const { login } = useAuthContext()
+  const { t } = useLanguage()
   const [error, setError] = useState('')
 
   function fazerLogin(e) {
@@ -27,46 +29,46 @@ export default function LoginPage() {
       <div className="login-container">
         <div className="login-header">
           <img src="/imagens/logo.png" alt="Logo Barbearia LJ" className="login-logo" />
-          <h2>Bem-vindo à Barbearia LJ</h2>
+          <h2>{t('loginTitle')}</h2>
         </div>
         
         {error && <div className="error-message">{error}</div>}
         
         <form onSubmit={fazerLogin}>
           <div className="form-group">
-            <label htmlFor="usuario">Usuário</label>
+            <label htmlFor="usuario">{t('username')}</label>
             <input 
               id="usuario"
               name="usuario" 
               type="text"
-              placeholder="Digite seu usuário" 
+              placeholder={t('enterUsername')} 
               required 
               autoFocus
             />
           </div>
           <div className="form-group">
-            <label htmlFor="senha">Senha</label>
+            <label htmlFor="senha">{t('password')}</label>
             <input 
               id="senha"
               name="senha" 
               type="password" 
-              placeholder="Digite sua senha" 
+              placeholder={t('enterPassword')} 
               required 
             />
           </div>
           <button className="btn-primary btn-full" type="submit">
-            Entrar
+            {t('login')}
           </button>
         </form>
         
         <div className="login-footer">
-          <p>Não tem uma conta? <Link to="/register">Criar conta</Link></p>
+          <p>{t('noAccount')} <Link to="/register">{t('createAccount')}</Link></p>
           <button 
             type="button" 
             className="btn-back" 
             onClick={() => navigate('/')}
           >
-            ← Voltar para o site
+            ← {t('backToSite')}
           </button>
         </div>
       </div>

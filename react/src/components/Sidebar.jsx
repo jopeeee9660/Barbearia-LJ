@@ -1,11 +1,13 @@
 import React from 'react'
 import { useSidebar, useScrollToSection } from '../hooks/useUI'
 import { useAuthContext } from '../context/AuthContext'
+import { useLanguage } from '../context/LanguageContext'
 
 export default function Sidebar() {
   const { isOpen, toggle, close } = useSidebar()
   const { scrollTo } = useScrollToSection()
   const { logout } = useAuthContext()
+  const { t } = useLanguage()
 
   const handleNavClick = (sectionId) => {
     scrollTo(sectionId)
@@ -35,19 +37,19 @@ export default function Sidebar() {
         </div>
         <nav className="sidebar-nav">
           <a href="#home" onClick={(e) => { e.preventDefault(); handleNavClick('home'); }}>
-            Início
+            {t('home')}
           </a>
           <a href="#servicos" onClick={(e) => { e.preventDefault(); handleNavClick('servicos'); }}>
-            Serviços
+            {t('services')}
           </a>
           <a href="#sobre" onClick={(e) => { e.preventDefault(); handleNavClick('sobre'); }}>
-            Sobre
+            {t('about')}
           </a>
           <a href="#contato" onClick={(e) => { e.preventDefault(); handleNavClick('contato'); }}>
-            Contato
+            {t('contact')}
           </a>
           <a href="#" onClick={(e) => { e.preventDefault(); handleLogout(); }}>
-            Sair
+            {t('logout')}
           </a>
         </nav>
       </aside>

@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuthContext } from '../context/AuthContext'
+import { useLanguage } from '../context/LanguageContext'
 
 export default function RegisterPage() {
   const navigate = useNavigate()
   const { register } = useAuthContext()
+  const { t } = useLanguage()
   const [error, setError] = useState('')
 
   function salvarConta(e) {
@@ -28,60 +30,60 @@ export default function RegisterPage() {
       <div className="login-container">
         <div className="login-header">
           <img src="/imagens/logo.png" alt="Logo Barbearia LJ" className="login-logo" />
-          <h2>Criar Conta</h2>
+          <h2>{t('registerTitle')}</h2>
         </div>
         
         {error && <div className="error-message">{error}</div>}
         
         <form onSubmit={salvarConta}>
           <div className="form-group">
-            <label htmlFor="novoUsuario">Nome de Usuário</label>
+            <label htmlFor="novoUsuario">{t('username')}</label>
             <input 
               id="novoUsuario"
               name="novoUsuario" 
               type="text"
-              placeholder="Escolha um nome de usuário" 
+              placeholder={t('chooseUsername')} 
               required 
               minLength={3}
               autoFocus
             />
-            <small>Mínimo 3 caracteres</small>
+            <small>{t('minChars')}</small>
           </div>
           <div className="form-group">
-            <label htmlFor="novaSenha">Senha</label>
+            <label htmlFor="novaSenha">{t('password')}</label>
             <input 
               id="novaSenha"
               name="novaSenha" 
               type="password" 
-              placeholder="Escolha uma senha forte" 
+              placeholder={t('choosePassword')} 
               required 
               minLength={6}
             />
-            <small>Mínimo 6 caracteres</small>
+            <small>{t('minPassword')}</small>
           </div>
           <div className="form-group">
-            <label htmlFor="confirmarSenha">Confirmar Senha</label>
+            <label htmlFor="confirmarSenha">{t('confirmPassword')}</label>
             <input 
               id="confirmarSenha"
               name="confirmarSenha" 
               type="password" 
-              placeholder="Digite a senha novamente" 
+              placeholder={t('retypePassword')} 
               required 
             />
           </div>
           <button className="btn-primary btn-full" type="submit">
-            Criar Conta
+            {t('createAccount')}
           </button>
         </form>
         
         <div className="login-footer">
-          <p>Já tem uma conta? <Link to="/login">Fazer login</Link></p>
+          <p>{t('hasAccount')} <Link to="/login">{t('login')}</Link></p>
           <button 
             type="button" 
             className="btn-back" 
             onClick={() => navigate('/')}
           >
-            ← Voltar para o site
+            ← {t('backToSite')}
           </button>
         </div>
       </div>

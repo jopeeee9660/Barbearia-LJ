@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useAuthContext } from '../context/AuthContext'
+import { useLanguage } from '../context/LanguageContext'
 import { useScheduling } from '../hooks/useScheduling'
 import { formatCardNumber, formatCardExpiry } from '../utils/helpers'
 
 export default function Modal({ open, service, onClose }) {
   const { user } = useAuthContext()
+  const { t } = useLanguage()
   const { createSchedule, validateScheduleDate } = useScheduling()
   const [metodo, setMetodo] = useState('')
   const [cardNumber, setCardNumber] = useState('')
@@ -49,7 +51,7 @@ export default function Modal({ open, service, onClose }) {
 
     const dataHora = e.target['data-hora'].value
     if (!dataHora) {
-      setError('Selecione data e hora')
+      setError(t('selectDate'))
       return
     }
 
@@ -61,7 +63,7 @@ export default function Modal({ open, service, onClose }) {
     }
 
     if (!metodo) {
-      setError('Selecione o método de pagamento')
+      setError(t('selectPaymentMethod'))
       return
     }
 
@@ -72,12 +74,12 @@ export default function Modal({ open, service, onClose }) {
       const nome = e.target['nome-cartao']?.value
 
       if (!numero || !expiry || !cvv || !nome) {
-        setError('Preencha todos os dados do cartão')
+        setError(t('fillCardData'))
         return
       }
 
       if (numero.replace(/\s/g, '').length !== 16) {
-        setError('Número do cartão inválido')
+        setError(t('invalidCard'))
         return
       }
     }
@@ -91,7 +93,7 @@ export default function Modal({ open, service, onClose }) {
 
     const result = createSchedule(scheduleData)
     if (result.success) {
-      alert('Agendamento realizado com sucesso!')
+      alert(t('scheduleSuccess'))
       onClose()
     }
   }
@@ -117,11 +119,11 @@ export default function Modal({ open, service, onClose }) {
         >
           &times;
         </span>
-        <h2 id="modal-titulo">Agendar {service}</h2>
+        <h2 id="modal-titulo">{t('scheduleService')} - {service}</h2>
         {error && <div className="error-message">{error}</div>}
         <form id="form-agendamento" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="servico-selecionado">Serviço:</label>
+            <label htmlFor="servico-selecionado">{t('service')}:</label>
             <input 
               id="servico-selecionado"
               readOnly 
@@ -130,7 +132,7 @@ export default function Modal({ open, service, onClose }) {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="data-hora">Data e Hora:</label>
+            <label htmlFor="data-hora">{t('dateTime')}:</label>
             <input 
               id="data-hora"
               name="data-hora" 
@@ -140,29 +142,29 @@ export default function Modal({ open, service, onClose }) {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="metodo-pagamento">Método de Pagamento:</label>
+            <label htmlFor="metodo-pagamento">{t('paymentMethod')}:</label>
             <select 
               id="metodo-pagamento"
               value={metodo} 
               onChange={(e) => setMetodo(e.target.value)}
               required
             >
-              <option value="">Selecione o método de pagamento</option>
-              <option value="pix">PIX</option>
-              <option value="cartao">Cartão de Crédito/Débito</option>
+              <option value="">{t('selectPayment')}</option>
+              <option value="pix">{t('pix')}</option>
+              <option value="cartao">{t('card')}</option>
             </select>
           </div>
           
           {metodo === 'pix' && (
             <div className="pagamento-info pix-info">
-              <p>✓ Após confirmar, você receberá o QR Code do PIX por e-mail</p>
+              <p>✓ {t('pixInstructions')}</p>
             </div>
           )}
           
           {metodo === 'cartao' && (
             <div className="pagamento-info cartao-info">
               <div className="form-group">
-                <label htmlFor="numero-cartao">Número do Cartão:</label>
+                <label htmlFor="numero-cartao">{t('cardNumber')}:</label>
                 <input 
                   id="numero-cartao"
                   name="numero-cartao"
@@ -175,7 +177,7 @@ export default function Modal({ open, service, onClose }) {
               </div>
               <div className="card-details">
                 <div className="form-group">
-                  <label htmlFor="validade">Validade:</label>
+                  <label htmlFor="validade">{t('expiry')}:</label>
                   <input 
                     id="validade"
                     placeholder="MM/AA" 
@@ -186,7 +188,7 @@ export default function Modal({ open, service, onClose }) {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="cvv">CVV:</label>
+                  <label htmlFor="cvv">{t('cvv')}:</label>
                   <input 
                     id="cvv"
                     name="cvv"
@@ -198,11 +200,11 @@ export default function Modal({ open, service, onClose }) {
                 </div>
               </div>
               <div className="form-group">
-                <label htmlFor="nome-cartao">Nome no Cartão:</label>
+                <label htmlFor="nome-cartao">{t('cardName')}:</label>
                 <input 
                   id="nome-cartao"
                   name="nome-cartao"
-                  placeholder="NOME COMO NO CARTÃO"
+                  placeholder={t('cardName').toUpperCase()}
                   required
                 />
               </div>
@@ -210,7 +212,7 @@ export default function Modal({ open, service, onClose }) {
           )}
           
           <button className="btn-primary" type="submit">
-            Confirmar Agendamento
+            {t('confirmSchedule')}
           </button>
         </form>
       </div>
