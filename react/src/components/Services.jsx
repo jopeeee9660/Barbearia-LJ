@@ -16,7 +16,7 @@ export default function Services({ onSchedule }) {
       title: t('beard'),
       desc: t('beardDesc'),
       price: 'R$ 25,00', 
-      img: '/imagens/imagem2.jpg',
+      img: '/imagens/imagem4.jpg',
       popular: false
     },
     { 

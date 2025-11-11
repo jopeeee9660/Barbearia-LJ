@@ -11,7 +11,7 @@ import Footer from './components/Footer'
 
 export default function App() {
   const navigate = useNavigate()
-  const { isAuthenticated } = useAuthContext()
+  const { isAuthenticated, loading } = useAuthContext()
   const { t } = useLanguage()
   const [modalOpen, setModalOpen] = useState(false)
   const [selectedService, setSelectedService] = useState('')
@@ -23,6 +23,22 @@ export default function App() {
     }
     setSelectedService(service)
     setModalOpen(true)
+  }
+
+  // Mostrar tela de loading enquanto verifica autenticação
+  if (loading) {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh',
+        fontSize: '1.5rem',
+        color: '#D4AF37'
+      }}>
+        Carregando...
+      </div>
+    )
   }
 
   return (

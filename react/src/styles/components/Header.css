@@ -135,26 +135,21 @@
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-xl);
   min-width: 220px;
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-15px) scale(0.95);
   z-index: 1001;
-  animation: dropdownSlide 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: opacity 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+              transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+              visibility 0.3s;
   border: 1px solid rgba(0, 0, 0, 0.05);
   overflow: hidden;
 }
 
-.user-area:hover .user-dropdown {
-  display: block;
-}
-
-@keyframes dropdownSlide {
-  from {
-    opacity: 0;
-    transform: translateY(-15px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+.user-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
 }
 
 .user-info {

@@ -8,15 +8,20 @@ export default function LoginPage() {
   const { login } = useAuthContext()
   const { t } = useLanguage()
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  function fazerLogin(e) {
+  async function fazerLogin(e) {
     e.preventDefault()
     setError('')
+    setLoading(true)
     
-    const usuario = e.target.usuario.value
+    const email = e.target.email.value
     const senha = e.target.senha.value
     
-    const result = login(usuario, senha)
+    const result = await login(email, senha)
+    
+    setLoading(false)
+    
     if (result.success) {
       navigate('/')
     } else {
@@ -36,14 +41,15 @@ export default function LoginPage() {
         
         <form onSubmit={fazerLogin}>
           <div className="form-group">
-            <label htmlFor="usuario">{t('username')}</label>
+            <label htmlFor="email">Email</label>
             <input 
-              id="usuario"
-              name="usuario" 
-              type="text"
-              placeholder={t('enterUsername')} 
+              id="email"
+              name="email" 
+              type="email"
+              placeholder="Digite seu email" 
               required 
               autoFocus
+              disabled={loading}
             />
           </div>
           <div className="form-group">
@@ -53,11 +59,12 @@ export default function LoginPage() {
               name="senha" 
               type="password" 
               placeholder={t('enterPassword')} 
-              required 
+              required
+              disabled={loading}
             />
           </div>
-          <button className="btn-primary btn-full" type="submit">
-            {t('login')}
+          <button className="btn-primary btn-full" type="submit" disabled={loading}>
+            {loading ? 'Entrando...' : t('login')}
           </button>
         </form>
         
@@ -67,6 +74,7 @@ export default function LoginPage() {
             type="button" 
             className="btn-back" 
             onClick={() => navigate('/')}
+            disabled={loading}
           >
             ← {t('backToSite')}
           </button>

@@ -8,16 +8,22 @@ export default function RegisterPage() {
   const { register } = useAuthContext()
   const { t } = useLanguage()
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  function salvarConta(e) {
+  async function salvarConta(e) {
     e.preventDefault()
     setError('')
+    setLoading(true)
     
-    const usuario = e.target.novoUsuario.value
+    const nome = e.target.nome.value
+    const email = e.target.email.value
     const senha = e.target.novaSenha.value
     const confirmar = e.target.confirmarSenha.value
     
-    const result = register(usuario, senha, confirmar)
+    const result = await register(nome, email, senha, confirmar)
+    
+    setLoading(false)
+    
     if (result.success) {
       navigate('/')
     } else {
@@ -37,17 +43,29 @@ export default function RegisterPage() {
         
         <form onSubmit={salvarConta}>
           <div className="form-group">
-            <label htmlFor="novoUsuario">{t('username')}</label>
+            <label htmlFor="nome">Nome completo</label>
             <input 
-              id="novoUsuario"
-              name="novoUsuario" 
+              id="nome"
+              name="nome" 
               type="text"
-              placeholder={t('chooseUsername')} 
+              placeholder="Digite seu nome completo" 
               required 
               minLength={3}
               autoFocus
+              disabled={loading}
             />
-            <small>{t('minChars')}</small>
+            <small>Mínimo 3 caracteres</small>
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input 
+              id="email"
+              name="email" 
+              type="email"
+              placeholder="Digite seu email" 
+              required
+              disabled={loading}
+            />
           </div>
           <div className="form-group">
             <label htmlFor="novaSenha">{t('password')}</label>
@@ -58,6 +76,7 @@ export default function RegisterPage() {
               placeholder={t('choosePassword')} 
               required 
               minLength={6}
+              disabled={loading}
             />
             <small>{t('minPassword')}</small>
           </div>
@@ -68,11 +87,12 @@ export default function RegisterPage() {
               name="confirmarSenha" 
               type="password" 
               placeholder={t('retypePassword')} 
-              required 
+              required
+              disabled={loading}
             />
           </div>
-          <button className="btn-primary btn-full" type="submit">
-            {t('createAccount')}
+          <button className="btn-primary btn-full" type="submit" disabled={loading}>
+            {loading ? 'Criando conta...' : t('createAccount')}
           </button>
         </form>
         
@@ -82,6 +102,7 @@ export default function RegisterPage() {
             type="button" 
             className="btn-back" 
             onClick={() => navigate('/')}
+            disabled={loading}
           >
             ← {t('backToSite')}
           </button>
